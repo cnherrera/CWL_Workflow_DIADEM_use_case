@@ -3,7 +3,7 @@ class: Workflow
 
 inputs:
   database_name: 
-    type: File
+    type: string
     doc: "String with the database name"
   database_filter_condition: 
     type: string
