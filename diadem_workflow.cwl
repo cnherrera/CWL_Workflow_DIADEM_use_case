@@ -39,7 +39,7 @@ steps:
   create_bigdft_inp:
     run: create_bigdft_inp.cwl
     in:
-      attributes: analysis_tool/attributes
+      attributes: filtering_tool/attributes
     out: [bigdft_inp_file]
     doc: "This step generates a template for the BigDFT simulation using the analysis results."
 
