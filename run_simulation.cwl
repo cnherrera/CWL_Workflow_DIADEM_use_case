@@ -14,8 +14,9 @@ inputs:
     type: File
     inputBinding:
       position: 1
-  hpc_center:
+  hpc_center_namr:
     type: string
+    label: "HPC center name"
     inputBinding:
       position: 2
 
