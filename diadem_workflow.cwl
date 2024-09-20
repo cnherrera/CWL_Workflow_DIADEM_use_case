@@ -57,6 +57,6 @@ steps:
     run: run_simulation.cwl
     in:
       job_to_be_submitted: create_bigdft_inp/bigdft_inp_file
-      hpc_center: hpc_center
+      hpc_center_name: hpc_center
     out: [simulation_data]
 
