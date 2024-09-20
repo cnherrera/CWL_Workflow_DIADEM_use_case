@@ -19,19 +19,22 @@ outputs:
 
 steps:
   # Step 1: Access the Database
-  access_database:
+  access_database_and_get_data:
     run: access_database.cwl
     in:
       database_name: database_name
-    out: [database_content]
-    doc: "This step access and retrieves the database" 
-
-  # Step 2: Filtering Tool
-  filtering_tool:
-    run: filtering_tool.cwl
-    in:
-      data: access_database/database_content
       condition: database_filter_condition
+      attributes_to_extract: attributes_to_extract
+    out: [database_content]
+    doc: "This step access, extracts the specified attributes, and outputs the data in CSV format."
+
+
+  # Step 2: Data input selection
+  data_selection:
+    run: data_selection.cwl
+    in:
+      data: access_database_and_get_data/database_content
+      parameters: data_selection_parameters
     out: [attributes]
     doc: "This step runs the conditions to filter the database, output are the values needed to create the inp file for the BigDFT simulation"
 
@@ -39,7 +42,7 @@ steps:
   create_bigdft_inp:
     run: create_bigdft_inp.cwl
     in:
-      attributes: filtering_tool/attributes
+      attributes: data_selection/attributes
     out: [bigdft_inp_file]
     doc: "This step generates a template for the BigDFT simulation using the analysis results."
 
