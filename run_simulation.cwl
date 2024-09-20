@@ -1,6 +1,11 @@
 cwlVersion: v1.2
 class: CommandLineTool
 
+label: "Sendind Job to HPC center"
+doc: >
+  This process uses remotemanager to send the job to a
+  HPC center.
+
 baseCommand: python3
 arguments: ["run_simulation.py"]
 
