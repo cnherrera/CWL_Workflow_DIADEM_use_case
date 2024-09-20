@@ -22,7 +22,7 @@ steps:
   access_database:
     run: access_database.cwl
     in:
-      database_input: database_name
+      database_name: database_name
     out: [database_content]
     doc: "This step access and retrieves the database" 
 
