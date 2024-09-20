@@ -8,6 +8,8 @@ inputs:
   database_filter_condition: 
     type: string
     doc: "String giving the condition to filter the database and retrieve the data in CSV form"
+  parameters:
+    type: string
   hpc_center: 
     type: string
     doc: "The HPC center to which the BigDFT simulation job will be submitted"
