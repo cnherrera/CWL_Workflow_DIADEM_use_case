@@ -14,7 +14,7 @@ arguments: ["access_database.py"]
 
 inputs:
   database_name:
-    type: File
+    type: string
     label: "DIADEM/DIAMOND Database filename"
     doc: >
       Name of the DIAMOND database hosted at TGCC-cloud. 
