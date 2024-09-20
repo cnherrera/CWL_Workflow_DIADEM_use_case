@@ -1,0 +1,5 @@
+database_name: "My_DIAMOND_database"
+
+database_filter_condition: "condition_value" # Replace with the actual condition provided by the user
+
+hpc_center: "HPC_center_name"  # Replace with the actual name of the HPC center
