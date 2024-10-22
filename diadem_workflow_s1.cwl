@@ -10,28 +10,10 @@ inputs:
     type: string[] | string
     doc: "List of attributes to extract from the database"
 
-  data_selection_parameters:
-    type: string
-    doc: "Parameters used for filtering the data selection step"
-
-  hpc_resources: 
-    type: record
-    fields:
-      name:
-        type: string
-        doc: "HPC center name to which the BigDFT simulation job will be submitted"
-      nodes:
-        type: int
-        doc: "Number of nodes to be used in the HPC center"
-      jobname:
-        type: string
-        doc: "Name of the job submitted to the HPC center"
-    doc: "Resources configuration for the HPC center"
-
 outputs:
-  simulation_output:
+  database_content:
     type: File
-    outputSource: run_simulation/simulation_data
+    outputSource: access_database_and_get_data/database_contet
 
 steps:
   # Step 1: Access the Database
