@@ -1,23 +1,35 @@
 cwlVersion: v1.2
 class: Workflow
 
+$namespaces:
+  cwltool: http://www.commonwl.org/cwltool#  # Add this line for namespaces
+
+
 inputs:
   database_name: 
     type: string
+    label: "Database Name"
     doc: "String with the database name"
 
   attributes_to_extract: 
     type: string[]
+    label: "Attributes to extract from full database"
     doc: "List of attributes to extract from the database"
+
+  attributes_to_simulate: 
+    type: string[]
+    label: "Attributes to simulate"
+    doc: "List of attributes to simulate"
 
   output_file:
     type: string
+    label: "CSV file name"
     doc: "Name of the CSV file"
 
   conditions:
     type: string
     doc: >
-      Filtering conditions as a JSON string (e.g., '{"temperature": "> 300", "pressure": "<= 1"}').
+      All filtering conditions as a JSON string to be used to select specific values to simulate (e.g., '{"temperature": "> 300", "pressure": "<= 1"}').
   
 outputs:
   chosen_attributes:
