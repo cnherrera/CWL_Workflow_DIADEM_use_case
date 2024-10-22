@@ -19,7 +19,7 @@ inputs:
       position: 1
 
   attributes_to_extract:
-    type: string[] | string
+    type: string[]
     label: "List of Attributes to Extract"
     doc: >
       A list of attributes (as strings) that the user wants to extract from the database.
