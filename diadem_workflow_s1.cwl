@@ -10,6 +10,10 @@ inputs:
     type: string[]
     doc: "List of attributes to extract from the database"
 
+  output_file:
+    type: string
+    doc: "name CSV file"
+
 outputs:
   database_content:
     type: File
@@ -22,6 +26,7 @@ steps:
     in:
       database_name: database_name
       attributes_to_extract: attributes_to_extract
+      output_file: output_file
     out: [database_content]
     doc: "This step accesses the DIAMOND database and outputs the extracted data in CSV format."
 
