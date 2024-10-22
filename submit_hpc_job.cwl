@@ -62,4 +62,4 @@ outputs:
     outputBinding:
       glob: "job_submission_log.txt"
 
-baseCommand: ["python3", "submit_hpc_job.py"]
+baseCommand: ["python3", "remotemanager_job_submission.py"]
