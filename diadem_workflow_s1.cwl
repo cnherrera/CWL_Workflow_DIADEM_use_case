@@ -7,7 +7,7 @@ inputs:
     doc: "String with the database name"
 
   attributes_to_extract: 
-    type: string[] | string
+    type: string[]
     doc: "List of attributes to extract from the database"
 
 outputs:
