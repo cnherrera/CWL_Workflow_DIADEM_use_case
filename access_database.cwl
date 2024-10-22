@@ -36,7 +36,6 @@ inputs:
     inputBinding:
       position: 3
       prefix: "--output"
-      default: "data_from_database.csv"
 
 outputs:
   database_content:
