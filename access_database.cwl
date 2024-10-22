@@ -3,11 +3,8 @@ class: CommandLineTool
 
 label: "Access Database and Get Data"
 doc: >
-  This process accesses a database using the rover_diamond libraries. It was thought to access
-  a numerical simulation database, which name is given as input. Needs to have access without 
-  authentication (r.g. token).  
-  Database contains attributes and dictionaries, outputs of the results as a CSV file. 
-
+  This process accesses a DIAMOND database using the rover_diamond library. It allows users to extract
+  all attributes or a specified subset, saving the result in a CSV file.
 
 baseCommand: python3
 arguments: ["access_database.py"]
@@ -17,29 +14,36 @@ inputs:
     type: string
     label: "DIADEM/DIAMOND Database filename"
     doc: >
-      Name of the DIAMOND database hosted at TGCC-cloud. 
+      Name of the DIADEM/DIAMOND database to connect to.
     inputBinding:
       position: 1
-  condition:
-    type: string
-    label: "Condition to get data"
-    inputBinding:
-      position: 2
+
   attributes_to_extract:
-    type: string[]
+    type: string[] | string
     label: "List of Attributes to Extract"
     doc: >
       A list of attributes (as strings) that the user wants to extract from the database.
-      These attributes will be used to filter and extract specific data from the input database file.
+      If not specified, all attributes are extracted by default.
+    inputBinding:
+      position: 2
+      prefix: "--attributes"
+
+  output_file:
+    type: string
+    label: "Output CSV file"
+    doc: >
+      Name of the CSV file to save the extracted data. Defaults to 'data_from_database.csv' if not specified.
     inputBinding:
       position: 3
-
+      prefix: "--output"
+      default: "data_from_database.csv"
 
 outputs:
   database_content:
     type: File
-    label: "Attributes of the numerical simulation CSV"
+    label: "Extracted data as CSV"
     doc: >
-      A CSV file containing the results from fetching the data
+      The output is a CSV file containing the extracted attributes from the DIAMOND database.
     outputBinding:
-      glob: "*.csv"
+      glob: "$(inputs.output_file)"
+
