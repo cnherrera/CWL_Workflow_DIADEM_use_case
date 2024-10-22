@@ -34,6 +34,7 @@ inputs:
 outputs:
   chosen_attributes:
     type: File
+    label: "Chosen attributes to simulate"
     outputSource: data_selection/attributes
 
 steps:
@@ -53,6 +54,6 @@ steps:
     in:
       data: access_database_and_get_data/database_content
       conditions: conditions
-      attributes: attributes_to_extract
+      attributes: attributes_to_simulate
     out: [attributes]
     doc: "This step processes the queried data to select the final attributes for the BigDFT simulation."
