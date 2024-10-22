@@ -13,7 +13,7 @@ inputs:
 outputs:
   database_content:
     type: File
-    outputSource: access_database_and_get_data/database_contet
+    outputSource: access_database_and_get_data/database_content
 
 steps:
   # Step 1: Access the Database
