@@ -6,7 +6,7 @@ import argparse
 from remotemanager import Dataset, URL, BaseComputer
 
 #
-# python remotemanager_job.py --function my_simulation_function --hpc_resource summer --nodes 4 --omp 8 --queue long --time 2h
+# python remotemanager_job_submission.py --function my_simulation_function --hpc_resource summer
 #
 
 # Setup the logger
@@ -32,28 +32,28 @@ def load_hpc_resources(hpc_resource_name):
         with open(yaml_file_path, 'r') as yaml_file:
             metadata = yaml.safe_load(yaml_file)
         logging.info("HPC resource configuration loaded successfully from %s", yaml_file_path)
-        return metadata['host'], metadata['submitter'], metadata['template']
+        
+        hpc_resources = metadata['hpc_resources']  # Load HPC resources (nodes, omp, queue, time)
+        return metadata['host'], metadata['submitter'], metadata['template'], hpc_resources
     except Exception as e:
         logging.error("Error loading HPC resource file: %s", e)
         sys.exit(1)
 
 # Create and submit the job to HPC
 def submit_job(function, hpc_resource, local_dir='summer_run_test', remote_dir='manager_run_test',
-               nodes=2, omp=4, queue='short', time='30m', extra_files_recv=['log.yaml', 'hosts']):
+               extra_files_recv=['log.yaml', 'hosts']):
     """
     Submits the job to the HPC cluster based on the provided function and resources.
-    function: Function to run remotely on the cluster.
     hpc_resource: Name of the HPC resource configuration (YAML file).
-    local_dir: Local directory for storing intermediate data.
-    remote_dir: Remote directory for running the job.
-    nodes: Number of nodes to use.
-    omp: OpenMP threads per node.
-    queue: Queue name (e.g., short, long).
-    time: Time limit for the job (e.g., '30m').
-    extra_files_recv: List of extra files to receive after the job completes.
     """
     # Load HPC resources
-    host, submitter, template = load_hpc_resources(hpc_resource)
+    host, submitter, template, hpc_resources = load_hpc_resources(hpc_resource)
+
+    # Extract HPC parameters from the loaded resources
+    nodes = hpc_resources['nodes']
+    omp = hpc_resources['omp']
+    queue = hpc_resources['queue']
+    time = hpc_resources['time']
     
     # Setup the job submission using remotemanager
     sub = BaseComputer(template=template, host=host, submitter=submitter)
@@ -90,33 +90,40 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Submit jobs to HPC clusters using remotemanager.")
     
-    # Add arguments
+    # Add arguments for function and hpc_resource
     parser.add_argument('--function', type=str, required=True, help="Function to run remotely on the cluster")
     parser.add_argument('--hpc_resource', type=str, required=True, help="HPC resource configuration file name (without .yaml)")
-    parser.add_argument('--nodes', type=int, default=2, help="Number of nodes to use")
-    parser.add_argument('--omp', type=int, default=4, help="Number of OpenMP threads")
-    parser.add_argument('--queue', type=str, default='short', help="Queue name (e.g., short, long)")
-    parser.add_argument('--time', type=str, default='30m', help="Time limit for the job (e.g., '30m')")
     parser.add_argument('--log_path', type=str, default='hpc_test', help="Path for logging the job")
     parser.add_argument('--log_level', type=str, default='debug', help="Logging level (debug, info, warning, error, critical)")
-    
+
     return parser.parse_args()
 
 # Main function
 if __name__ == "__main__":
-    # Parse arguments
+    # Parse command-line arguments
     args = parse_arguments()
 
     # Setup logger
     setup_logger(log_path=args.log_path, log_level=args.log_level)
 
+    # Load HPC resource parameters from the YAML file
+    hpc_resource_data = load_hpc_resources(args.hpc_resource)
+
+    # Extract HPC-specific parameters from the YAML file
+    nodes = hpc_resource_data.get('nodes', 2)  # Default value if not found in YAML
+    omp = hpc_resource_data.get('omp', 4)      # Default value if not found in YAML
+    queue = hpc_resource_data.get('queue', 'short')  # Default value
+    time = hpc_resource_data.get('time', '30m')      # Default value
+
     # Submit job to HPC
-    results = submit_job(function=args.function,
-                         hpc_resource=args.hpc_resource,
-                         nodes=args.nodes,
-                         omp=args.omp,
-                         queue=args.queue,
-                         time=args.time)
+    results = submit_job(
+        function=args.function,
+        hpc_resource=args.hpc_resource,
+        nodes=nodes,
+        omp=omp,
+        queue=queue,
+        time=time
+    )
 
     # Log and output results
     logging.info("Job results: %s", results)
