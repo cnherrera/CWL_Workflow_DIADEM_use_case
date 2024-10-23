@@ -34,6 +34,21 @@ inputs:
     label: "HPC Resource"
     doc: "HPC resource configuration file (without '.yaml'). For example: 'summer', 'tgcc', or 'genci'."
 
+  bigdft_simulation_function:
+    type: File
+    label: "BigDFT Simulation Function"
+    doc: "The YAML file containing the BigDFT simulation function."
+
+  log_path:
+    type: string
+    label: "Log File Path"
+    default: "hpc_test"
+
+  log_level:
+    type: string
+    label: "Log Level"
+    default: "debug"
+
 outputs:
   chosen_attributes:
     type: File
