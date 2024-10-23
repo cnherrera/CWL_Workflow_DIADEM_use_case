@@ -86,7 +86,7 @@ steps:
   submit_hpc_job:
     run: submit_hpc_job.cwl
     in:
-      function: create_bigdft_inp/output_yaml
+      function: create_bigdft_inp/bigdft_inp_file
       hpc_resource: hpc_resource
     out: [job_results]
     doc: "This step submits the simulation job to the HPC cluster using the remotemanager module and the specified HPC resource."
