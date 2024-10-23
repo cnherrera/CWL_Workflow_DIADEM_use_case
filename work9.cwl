@@ -35,10 +35,10 @@ inputs:
     label: "HPC Resource"
     doc: "HPC resource configuration file (without '.yaml'). For example: 'summer', 'tgcc', or 'genci'."
 
-  bigdft_simulation_function:
-    type: File
-    label: "BigDFT Simulation Function"
-    doc: "The YAML file containing the BigDFT simulation function."
+#  bigdft_simulation_function:
+#    type: File
+#    label: "BigDFT Simulation Function"
+#    doc: "The YAML file containing the BigDFT simulation function."
 
 outputs:
   chosen_attributes:
