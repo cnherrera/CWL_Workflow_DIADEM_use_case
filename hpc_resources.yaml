@@ -1,5 +1,0 @@
-hpc_resource: summer
-nodes: 4
-omp: 8
-queue: long
-time: 2h
