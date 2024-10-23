@@ -36,11 +36,6 @@ inputs:
     label: "HPC Resource"
     doc: "HPC resource configuration file (without '.yaml'). For example: 'summer', 'tgcc', or 'genci'."
 
-  hpc_resource:
-    type: string
-    label: "HPC Resource"
-    doc: "HPC resource configuration file (without '.yaml'). For example: 'summer', 'tgcc', or 'genci'."
-
 outputs:
   chosen_attributes:
     type: File
