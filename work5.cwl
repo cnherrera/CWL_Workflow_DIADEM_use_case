@@ -42,10 +42,10 @@ outputs:
     label: "Chosen attributes to simulate"
     outputSource: data_selection/attributes
 
-  bigdft_input_file:
+  bigdft_inp_file:
     type: File
     label: "BigDFT Input YAML"
-    outputSource: create_bigdft_input/bigdft_inp_file
+    outputSource: create_bigdft_inp/bigdft_inp_file
     doc: "YAML file generated for BigDFT simulation input"
 
   hpc_job_results:
