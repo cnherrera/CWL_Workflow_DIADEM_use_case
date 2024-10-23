@@ -6,7 +6,7 @@ doc: >
   This step submits a simulation job to the HPC resource using the provided HPC submission template and simulation function.
 
 inputs:
-  bigdft_simulation_function:
+  bigdft_inp_file:
     type: File
     label: "BigDFT simulation Function to run"
     doc: "YAML file containing the Python simulation function to be executed on the HPC."
