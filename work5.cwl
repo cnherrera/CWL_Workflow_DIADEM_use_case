@@ -51,7 +51,7 @@ outputs:
   hpc_job_results:
     type: File
     label: "HPC Job Results"
-    outputSource: submit_hpc_job/job_results
+    outputSource: submit_hpc_job/hpc_job_results
 
 steps:
   # Step 1: Access the Database
@@ -88,5 +88,5 @@ steps:
     in:
       function: create_bigdft_inp/bigdft_inp_file
       hpc_resource: hpc_resource
-    out: [job_results]
+    out: [hpc_job_results]
     doc: "This step submits the simulation job to the HPC cluster using the remotemanager module and the specified HPC resource."
