@@ -75,7 +75,7 @@ steps:
     doc: "This step processes the queried data to select the final attributes for the BigDFT simulation."
 
   # Step 3: Create BigDFT Input File
-  create_bigdft_input:
+  create_bigdft_inp:
     run: create_bigdft_inp.cwl
     in:
       attributes: data_selection/attributes
@@ -86,7 +86,7 @@ steps:
   submit_hpc_job:
     run: submit_hpc_job.cwl
     in:
-      function: create_bigdft_input/bigdft_inp_file
+      function: create_bigdft_inp/bigdft_inp_file
       hpc_resource: hpc_resource
     out: [job_results]
     doc: "This step submits the simulation job to the HPC cluster using the remotemanager module and the specified HPC resource."
