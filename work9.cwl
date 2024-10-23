@@ -42,12 +42,12 @@ inputs:
   log_path:
     type: string
     label: "Log File Path"
-    default: "hpc_test"
+#    default: "hpc_test"
 
   log_level:
     type: string
     label: "Log Level"
-    default: "debug"
+#    default: "debug"
 
 outputs:
   chosen_attributes:
