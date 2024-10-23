@@ -29,7 +29,7 @@ inputs:
     inputBinding:
       position: 3
       prefix: "--log_path"
-      default: "hpc_test"
+#      default: "hpc_test"
 
   log_level:
     type: string
@@ -38,10 +38,10 @@ inputs:
     inputBinding:
       position: 4
       prefix: "--log_level"
-      default: "debug"
+#      default: "debug"
 
 outputs:
-  job_results:
+  hpc_job_results:
     type: stdout
     label: "Job Submission Results"
     doc: "Results of the HPC job submission"
