@@ -1,9 +1,6 @@
 cwlVersion: v1.2
 class: Workflow
 
-$namespaces:
-  cwltool: http://www.commonwl.org/cwltool#
-
 inputs:
   database_name:
     type: string
