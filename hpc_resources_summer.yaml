@@ -1,0 +1,28 @@
+host: summer   #  cluster
+hpc_resources:
+  nodes: 4       # Number of nodes
+  omp: 8         # OpenMP threads
+  queue: long    # Queue name
+  time: 2h       # Time limit for job
+submitter: qsub  # Job submitter (qsub, slurm, pbs)
+template: |-
+  #!bin/bash
+  #PBS -N #JOBNAME#
+  #PBS -q short              # queue where the job will be submitted
+  #PBS -o scheduler_stdout   # output file for standard output
+  #PBS -e scheduler_stderr   # output file for standard error
+  #PBS -l nodes=#NODES#:ppn=#MPI_PER_NODE:default=16#,walltime=#TIME:format=time#  # Requests a specific number of nodes and processors per node. Sets 
+  the maximum wall-clock time for the job.
+  
+  # Commands that will be executed when the job runs
+  module purge
+  module load icc
+  module load impi
+  module load mkl/18
+  module load python/anaconda3
+  
+  cd $PBS_O_WORKDIR
+  export OMP_NUM_THREADS=#OMP:default=4#
+  export BIGDFT_MPIRUN='mpirun -np #mpi_np:default={nodes*mpi_per_node.mpi_ppn}# -ppn #mpi_ppn:default={mpi_per_node/omp}#'
+  
+  source /W/$USER/build/bigdft/bigdftvars.sh
