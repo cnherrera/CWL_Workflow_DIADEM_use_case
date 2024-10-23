@@ -4,7 +4,6 @@ class: Workflow
 $namespaces:
   cwltool: http://www.commonwl.org/cwltool#  # Add this line for namespaces
 
-
 inputs:
   database_name: 
     type: string
@@ -44,7 +43,7 @@ outputs:
   bigdft_input_file:
     type: File
     label: "BigDFT Input YAML"
-    outputSource: create_bigdft_input/bigdft_inp_file
+    outputSource: create_bigdft_inp/bigdft_inp_file
     doc: "YAML file generated for BigDFT simulation input"
 
   hpc_job_results:
@@ -74,7 +73,7 @@ steps:
     doc: "This step processes the queried data to select the final attributes for the BigDFT simulation."
 
   # Step 3: Create BigDFT Input File
-  create_bigdft_input:
+  create_bigdft_inp:
     run: create_bigdft_inp.cwl
     in:
       attributes: data_selection/attributes
