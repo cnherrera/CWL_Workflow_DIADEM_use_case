@@ -29,6 +29,7 @@ inputs:
     type: string
     doc: >
       All filtering conditions as a JSON string to be used to select specific values to simulate (e.g., '{"temperature": "> 300", "pressure": "<= 1"}').
+
   hpc_resource:
     type: string
     label: "HPC Resource"
@@ -38,16 +39,6 @@ inputs:
     type: File
     label: "BigDFT Simulation Function"
     doc: "The YAML file containing the BigDFT simulation function."
-
-  log_path:
-    type: string
-    label: "Log File Path"
-#    default: "hpc_test"
-
-  log_level:
-    type: string
-    label: "Log Level"
-#    default: "debug"
 
 outputs:
   chosen_attributes:
