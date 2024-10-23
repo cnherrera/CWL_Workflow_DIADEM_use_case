@@ -22,23 +22,23 @@ inputs:
       position: 2
       prefix: "--hpc_resource"
 
-  log_path:
-    type: string
-    label: "Log File Path"
-    doc: "Path for logging the job"
-    inputBinding:
-      position: 3
-      prefix: "--log_path"
-#      default: "hpc_test"
+#  log_path:
+#    type: string
+#    label: "Log File Path"
+#    doc: "Path for logging the job"
+#    inputBinding:
+#      position: 3
+#      prefix: "--log_path"
+##      default: "hpc_test"
 
-  log_level:
-    type: string
-    label: "Log Level"
-    doc: "Logging level (debug, info, warning, error, critical)"
-    inputBinding:
-      position: 4
-      prefix: "--log_level"
-#      default: "debug"
+#  log_level:
+#    type: string
+#    label: "Log Level"
+#    doc: "Logging level (debug, info, warning, error, critical)"
+#    inputBinding:
+#      position: 4
+#      prefix: "--log_level"
+##      default: "debug"
 
 outputs:
   hpc_job_results:
