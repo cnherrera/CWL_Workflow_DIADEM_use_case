@@ -1,7 +1,7 @@
 cwlVersion: v1.2
 class: CommandLineTool
 
-label: "Submit HPC Job"
+label: "Submit HPC Job (remote manager)"
 doc: >
   This step submits a simulation job to the HPC resource using the provided HPC submission template and simulation function.
 
