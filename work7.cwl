@@ -47,6 +47,11 @@ outputs:
     outputSource: create_bigdft_input/bigdft_inp_file
     doc: "YAML file generated for BigDFT simulation input"
 
+  hpc_job_results:
+    type: File
+    label: "HPC Job Results"
+    outputSource: submit_hpc_job/hpc_job_results
+
 steps:
   # Step 1: Access the Database
   access_database_and_get_data:
@@ -75,3 +80,13 @@ steps:
       attributes: data_selection/attributes
     out: [bigdft_inp_file]
     doc: "This step takes the selected attributes and creates a BigDFT YAML input file."
+
+  # Step 4: Submit HPC Job
+  submit_hpc_job:
+    run: submit_hpc_job.cwl
+    in:
+      function: create_bigdft_inp/bigdft_inp_file
+      hpc_resource: hpc_resource
+    out: [hpc_job_results]
+    doc: "This step submits the simulation job to the HPC cluster using the remotemanager module and the specified HPC resource."
+
