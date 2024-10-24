@@ -7,28 +7,29 @@ $namespaces:
 inputs:
   database_name: 
     type: string
-    label: "DIAMONS Database Name"
-    doc: "String with the database name"
+    label: "DIAMOND Database Name"
+    doc: "String with the name of the DIAMOND database we want to use"
 
   attributes_to_extract: 
     type: string[]
-    label: "Attributes to extract from full database"
+    label: "Attributes to fetch from database"
     doc: "List of attributes to extract from the database"
 
   attributes_to_simulate: 
     type: string[]
-    label: "Attributes to simulate"
+    label: "Attributes to simulate with BigDFT"
     doc: "List of attributes to simulate"
 
   output_file:
     type: string
-    label: "CSV file name"
-    doc: "Name of the CSV file"
+    label: "Name csv file"
+    doc: "Optional, name of the output csv file extracting the requested attributes from the database"
 
   conditions:
     type: string
+    label: "Filtering conditions"
     doc: >
-      All filtering conditions as a JSON string to be used to select specific values to simulate (e.g., '{"temperature": "> 300", "pressure": "<= 1"}').
+      All filtering conditions as a JSON string to be used to select specific values to simulate, or  select outliers (e.g., '{"temperature": "> 300", "pressure": "<= 1"}').
 
   hpc_resource:
     type: string
