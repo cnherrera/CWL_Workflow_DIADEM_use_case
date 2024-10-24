@@ -7,7 +7,7 @@ $namespaces:
 inputs:
   database_name: 
     type: string
-    label: "Database Name"
+    label: "DIAMONS Database Name"
     doc: "String with the database name"
 
   attributes_to_extract: 
